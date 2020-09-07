@@ -16,7 +16,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          python3 -m pip install .github/workflows/requirements.txt
+          python3 -m pip install -r .github/workflows/requirements.txt
       
       - name: Run visualizer
         run: |
