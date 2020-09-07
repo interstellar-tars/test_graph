@@ -33,7 +33,10 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.1.4
         with:
-          path: .github/workflows/Digraph.gv.jpeg
-          
+          path: .github/workflows/Digraph.gv.pdf
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          path: Digraph.gv.pdf          
       
  
