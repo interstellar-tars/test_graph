@@ -16,6 +16,7 @@ jobs:
       
       - name: Install dependencies
         run: |
+          sudo apt-get install graphviz
           python3 -m pip install -r .github/workflows/requirements.txt
       
       - name: Run visualizer
