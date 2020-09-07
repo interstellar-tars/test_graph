@@ -116,7 +116,7 @@ def print_graph():
 
     dot = Digraph(
             comment='Graph',
-            graph_attr={'rankdir':'LR','style':'filled'},
+            graph_attr={'dpi' : '100','rankdir':'LR','style':'filled'},
             node_attr={'shape':'rectangle',
                                 'fixedsize': 'false',
                                 'width': '1.2',
@@ -180,6 +180,7 @@ def print_graph():
                      cluster[edges[1]][0],lhead=edges[1])
         else:
             dot.edge(edges[0],edges[1])
+    dot.render(filename='graph')
     return dot
 
 
