@@ -42,7 +42,7 @@ jobs:
       - name: deploy
         run: echo Deploy Complete
   deploy:
-    needs: [deploy]
+    needs: [stage]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
