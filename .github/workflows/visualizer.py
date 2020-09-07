@@ -180,7 +180,7 @@ def print_graph():
                      cluster[edges[1]][0],lhead=edges[1])
         else:
             dot.edge(edges[0],edges[1])
-    dot.render(filename='graph')
+    dot.view()
     return dot
 
 
