@@ -21,4 +21,12 @@ jobs:
       - name: Run visualizer
         run: |
           python .github/workflows/visualizer.py .github/workflows/main.yml True True
+      
+      - uses: rishabhgupta/git-action-issue@v2
+        id: Issue
+        with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            title: Actions Visualizer
+      - run: |
+          echo ${{ steps.issue.outputs.issue }}
  
