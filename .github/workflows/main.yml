@@ -32,8 +32,17 @@ jobs:
     steps:
       - name: test
         run: echo Test Complete
-  deploy:
+  stage:
     needs: [test-1,test-2,test-3]
+    strategy:
+      matrix:
+        env: [mac, linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo Deploy Complete
+  deploy:
+    needs: [deploy]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
