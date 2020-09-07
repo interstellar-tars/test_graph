@@ -20,5 +20,5 @@ jobs:
       
       - name: Run visualizer
         run: |
-          python .github/workflows/visualizer.py .github/workflows/main.yaml True True
+          python .github/workflows/visualizer.py .github/workflows/main.yml True True
  
