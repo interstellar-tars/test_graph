@@ -54,9 +54,9 @@ class node:
 
 def print_graph():
     #file_name,show_matrix_nodes=True,group_parallel_nodes=True
-    file_name=sys.argv[0]
-    show_matrix_nodes=sys.argv[1]
-    group_parallel_nodes=sys.argv[2]
+    file_name=sys.argv[1]
+    show_matrix_nodes=sys.argv[2]
+    group_parallel_nodes=sys.argv[3]
 
     with open(file_name) as file:
             pre_workflow = yaml.load(file, Loader=yaml.FullLoader)
