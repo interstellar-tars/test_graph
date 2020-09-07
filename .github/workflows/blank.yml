@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: echo Build Complete
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo Deploy Complete
