@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        v: [1,3,5]
     steps:
       - uses: actions/checkout@v2
       - name: build
@@ -23,8 +26,14 @@ jobs:
     steps:
       - name: test
         run: echo Test Complete
+  test-3:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
   deploy:
-    needs: [test-1,test-2]
+    needs: [test-1,test-2,test-3]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
