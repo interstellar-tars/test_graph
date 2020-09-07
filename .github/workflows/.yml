@@ -1,0 +1,9 @@
+name: Greet Everyone
+
+on: [push]
+
+jobs:
+  build:
+    name: Greeting
+    runs-on: ubuntu-latest
+ 
