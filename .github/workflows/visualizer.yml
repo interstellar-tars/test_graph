@@ -29,4 +29,10 @@ jobs:
             title: Actions Visualizer
       - run: |
           echo ${{ steps.issue.outputs.issue }}
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          path: .github/workflows/graph.jpeg
+          
+      
  
