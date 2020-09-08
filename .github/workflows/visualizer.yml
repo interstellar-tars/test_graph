@@ -25,11 +25,11 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          sudo apt-get install graphviz
-          python3 -m pip install -r .github/workflows/requirements.txt
+          pip install -r .github/workflows/requirements.txt
       
       - name: Run visualizer
         run: |
+          sudo apt-get install graphviz
           python .github/workflows/visualizer.py .github/workflows/main.yml True True
       
       - name: Upload a Build Artifact
