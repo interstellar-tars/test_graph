@@ -67,14 +67,14 @@ jobs:
         run: echo Test Complete
   
   security-test:
-    needs: [test-1,test-A]
+    needs: [integration-test]
     runs-on: ubuntu-latest
     steps:
       - name: test
         run: echo Test Complete
         
   stage:
-    needs: [integration-test,security-test]
+    needs: [integration-test]
     strategy:
       matrix:
         env: [mac, linux]
@@ -84,7 +84,7 @@ jobs:
         run: echo Stage Deploy Complete
             
   deploy:
-    needs: [stage]
+    needs: [stage,security-test]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
