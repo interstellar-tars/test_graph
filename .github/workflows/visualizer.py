@@ -124,7 +124,7 @@ def print_graph():
 
     dot = Digraph(
             comment='Graph',
-            graph_attr={'dpi' : '100','rankdir':'LR','style':'filled'},
+            graph_attr={'dpi' : '100','rankdir':'LR'},
             node_attr={'shape':'rectangle',
                                 'fixedsize': 'false',
                                 'width': '1.2',
@@ -155,8 +155,13 @@ def print_graph():
 
     for cluster_name,ns in cluster.items():
         with dot.subgraph(name=cluster_name) as c:
+            if cluster_name.find('matrix') >=0:
+                c.attr(color='red',label = cluster_name[15:]+" matrix",fontsize='10')
+            else:
+                c.attr(color='blue')
             for n in ns:
                 c.node(n)
+                
     for cluster_name,ns in stage.items():
         with dot.subgraph(name=cluster_name) as c:
             for n in ns:
