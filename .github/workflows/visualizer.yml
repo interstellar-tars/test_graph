@@ -24,7 +24,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install -r .github/workflows/requirements.txt
+          pip install -r .github/visualizer/requirements.txt
           
       - name: Install graphviz
         run: |
@@ -32,7 +32,7 @@ jobs:
       
       - name: Run visualizer
         run: |
-          python .github/workflows/visualizer.py .github/workflows/main.yml True True
+          python .github/visualizer/visualizer.py .github/workflows/main.yml True True
       
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.1.4
