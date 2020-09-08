@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        v: [1,3,5]
+        v: [1,3]
         os: [lin, win, mac]
     steps:
       - name: build
