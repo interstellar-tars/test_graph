@@ -101,8 +101,8 @@ def print_graph():
             if n.has_needs() == True:
                 for needs_node in n.needs:
                     if nodes[needs_node].has_matrix() == True:
-                        n.needs.remove(needs_node)
                         n.add_needs(nodes[needs_node].matrix)
+                        n.needs.remove(needs_node)
 
         for n in nodes_to_del:
             del nodes[n.name]
