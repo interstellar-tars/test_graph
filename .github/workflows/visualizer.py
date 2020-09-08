@@ -156,7 +156,7 @@ def print_graph():
     for cluster_name,ns in cluster.items():
         with dot.subgraph(name=cluster_name) as c:
             if cluster_name.find('matrix') >=0:
-                c.attr(color='red',label = cluster_name[15:]+" matrix",fontsize='10')
+                c.attr(style='filled', color='lightgrey' ,label = cluster_name[15:]+" matrix",fontsize='10')
             else:
                 c.attr(color='blue')
             for n in ns:
