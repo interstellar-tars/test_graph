@@ -1,6 +1,6 @@
 name: Share data between jobs
 
-on: [push]
+on: [qwe]
 
 jobs:
   job_1:
