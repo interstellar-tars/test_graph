@@ -136,11 +136,12 @@ def print_graph():
 
     j=0
     for n in nodes.values():
-        t=[k for k in nodes.values() if (n.successors==k.successors) and (n.predecessors==k.predecessors)]
+        t=[k for k in nodes.values() if ((n.successors==k.successors) 
+           and (n.predecessors==k.predecessors))
+          and ("matrix" not in k.group.keys())]
         if len(t)>1:
             for ns in t:
-                if "matrix" not in ns.group.keys():
-                    ns.add_group(('smart',str(j)))
+                ns.add_group(('smart',str(j)))
             j=j+1
 
     cluster=defaultdict(list)
