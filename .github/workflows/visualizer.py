@@ -147,11 +147,11 @@ def print_graph():
     stage=defaultdict(list)
     for n in nodes.values():
         if "matrix" in n.group.keys():
-            cluster['cluster_'+ n.group["matrix"]].append(n.name)
+            cluster['cluster_matrix_'+ n.group["matrix"]].append(n.name)
         elif "stage" in n.group.keys():
-            stage['cluster_'+ n.group["stage"]].append(n.name)
+            stage['cluster_stage_'+ n.group["stage"]].append(n.name)
         elif "smart" in n.group.keys() and group_parallel_nodes == True:
-            cluster['cluster_'+ n.group["smart"]].append(n.name)
+            cluster['cluster_smart_'+ n.group["smart"]].append(n.name)
 
     for cluster_name,ns in cluster.items():
         with dot.subgraph(name=cluster_name) as c:
