@@ -25,10 +25,13 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r .github/workflows/requirements.txt
+          
+      - name: Install graphviz
+        run: |
+          sudo apt-get install graphviz
       
       - name: Run visualizer
         run: |
-          sudo apt-get install graphviz
           python .github/workflows/visualizer.py .github/workflows/main.yml True True
       
       - name: Upload a Build Artifact
