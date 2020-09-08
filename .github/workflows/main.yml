@@ -5,36 +5,76 @@ on:
     branches: [ qwe ]
 
 jobs:
-  build:
+  build-backend:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         v: [1,3,5]
-        os: [lin, win,mac]
+        os: [lin, win, mac]
     steps:
-      - uses: actions/checkout@v2
       - name: build
         run: echo Build Complete
+  
+  build-frontend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [lin, win, mac]
+    steps:
+      - name: build
+        run: echo Build Complete
+  
+  test-A:
+    needs: [build-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
+        
+  test-B:
+    needs: [build-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
+        
   test-1:
-    needs: [build]
+    needs: [build-backend]
     runs-on: ubuntu-latest
     steps:
       - name: test
         run: echo Test Complete
+        
   test-2:
-    needs: [build]
+    needs: [build-backend]
     runs-on: ubuntu-latest
     steps:
       - name: test
         run: echo Test Complete
+        
   test-3:
-    needs: [build]
+    needs: [build-backend]
     runs-on: ubuntu-latest
     steps:
       - name: test
         run: echo Test Complete
+  
+  integration-test:
+    needs: [test-1,test-2,test-3,test-A,test-B]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
+  
+  security-test:
+    needs: [test-1,test-A]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo Test Complete
+        
   stage:
-    needs: [test-1,test-2,test-3]
+    needs: [integration-test,security-test]
     strategy:
       matrix:
         env: [mac, linux]
@@ -42,14 +82,9 @@ jobs:
     steps:
       - name: deploy
         run: echo Stage Deploy Complete
-  security-test:
-    needs: [test-1]
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-        run: echo Test Complete
+            
   deploy:
-    needs: [stage,security-test]
+    needs: [stage]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
