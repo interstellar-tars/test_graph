@@ -94,6 +94,7 @@ jobs:
 
 Fan-out flow is when multiple jobs are spawned in parallel once a single job or a group is completed. Fan-in flow is when a single job or a group waits for a multiple jobs to complete:
 
+#### Basic
 ```yaml
 name: fan-in-fan-out
  
@@ -104,14 +105,9 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - run: echo "..."
-  test-A-1:
+  test-A:
    runs-on: ubuntu-latest
    needs: [build]
-   steps:
-     - run: echo "..."
-  test-A-2:
-   runs-on: ubuntu-latest
-   needs: [test-A-1]
    steps:
      - run: echo "..."
   test-B:
@@ -126,7 +122,7 @@ jobs:
      - run: echo "..."
   integration-test:
    runs-on: ubuntu-latest
-   needs: [test-A-2,test-B,test-C]
+   needs: [test-A,test-B,test-C]
    steps:
      - run: echo "..."
   staging:
@@ -140,6 +136,89 @@ jobs:
    steps:
      - run: echo "..."
 ```
+
+#### Medium Complexity
+
+```yaml
+name: fan-in-fan-out
+ 
+on: push
+ 
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   strategy:
+     matrix:
+      os: [windows,mac,os]
+   steps:
+     - run: echo "..."
+  lint:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+     - run: echo "..."
+  checks:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+     - run: echo "..."
+  test-A-1:
+   runs-on: ubuntu-latest
+   needs: [lint,checks]
+   strategy:
+     matrix:
+      nodeVer: [4,6,8]
+   steps:
+     - run: echo "..."
+  test-A-2:
+   runs-on: ubuntu-latest
+   needs: [test-A-1]
+   steps:
+     - run: echo "..."
+  test-B:
+   runs-on: ubuntu-latest
+   needs: [lint,checks]
+   strategy:
+     matrix:
+      nodeVer: [4,6,8]
+   steps:
+     - run: echo "..." 
+  test-C:
+   runs-on: ubuntu-latest
+   needs: [lint,checks]
+   strategy:
+     matrix:
+      nodeVer: [4,6,8]
+   steps:
+     - run: echo "..."
+  staging:
+   runs-on: ubuntu-latest
+   needs: [test-A-2,test-B,test-C]
+   steps:
+     - run: echo "..."
+  uat-test-A:
+   runs-on: ubuntu-latest
+   needs: [staging]
+   steps:
+     - run: echo "..." 
+  uat-test-B:
+   runs-on: ubuntu-latest
+   needs: [staging]
+   steps:
+     - run: echo "..."  
+  uat-test-C:
+   runs-on: ubuntu-latest
+   needs: [staging]
+   steps:
+     - run: echo "..."  
+  deploy:
+   runs-on: ubuntu-latest
+   needs: [uat-test-A,uat-test-B,uat-test-C]
+   steps:
+     - run: echo "..."
+  ```
+
+
 ### Monorepo
 
 In a monorepo workflow, you need to run multiple pipelines against multiple projects within a single repository. For instance, you can run pipelines for both Backend and Frontend in parallel.
