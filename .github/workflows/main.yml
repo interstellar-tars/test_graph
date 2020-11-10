@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo Test Complete
+        run: qweqwecwew
   
   security-test:
     needs: [integration-test]
