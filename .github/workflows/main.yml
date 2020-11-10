@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: qweqwecwew
+        run: echo integration test Complete
   
   security-test:
     needs: [integration-test]
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy
-        run: echo Stage Deploy Complete
+        run: qweqwecwew
             
   deploy:
     needs: [stage,security-test]
