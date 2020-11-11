@@ -7,9 +7,6 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - run: echo "..."
-     - uses: actions/upload-artifact@v1
-       with:
-         name: ios-build.zip
 
  android-build:
    runs-on: ubuntu-latest
@@ -17,17 +14,11 @@ jobs:
      - run: echo "..."
      - run: echo "..."
      - run: echo "..."
-     - uses: actions/upload-artifact@v1
-       with:
-         name: android-build.zip
-
+   
  web-build:
    runs-on: ubuntu-latest
    steps:
      - run: echo "..."
-     - uses: actions/upload-artifact@v1
-       with:
-         name: web-build.zip
 
  ios-test-A:
    runs-on: ubuntu-latest
