@@ -1,6 +1,6 @@
 name: fan-in-fan-out
 
-on: push
+on: qwe
 
 jobs:
   build:
