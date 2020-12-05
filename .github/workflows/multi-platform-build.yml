@@ -1,6 +1,6 @@
 name: multi-platform-build
 
-on: push
+on: qwe
 
 jobs:
  ios-build:
